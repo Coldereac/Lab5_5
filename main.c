@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <float.h>
+#include <string.h>
 
 #define SIZE 100
 
@@ -18,8 +19,9 @@ int main() {
     char sentence[SIZE]; // Масив для речення
 
     // Введення речення
-    printf("Enter sentence: ");
+    printf("Don't type something like 2.2.2...\nEnter sentence: ");
     gets(sentence);
+    sentence[strlen(sentence)] = '\0';
 
     //знаходження мінімального числа
     float min = find_min(sentence);
@@ -27,8 +29,11 @@ int main() {
     // Виведення результату
     if (min == FLT_MAX) {
         printf("No numbers.\n");
-    } else {
-        printf("Minimal number: %.8f\n", min);
+    }else if(min == -1){
+        puts("You typed number like 2.2.2...");
+    }
+    else {
+        printf("Minimal number: %.5f\n", min);
     }
     return 0;
 }
@@ -38,14 +43,16 @@ float find_min(const char* str) {
     // Змінна для зберігання числа
     char num_temp[20];
     // Обробка речення
+    int stop;
     for (int i = 0, j; str[i] != '\0'; i++) {
         // Перевірка, чи є символ цифрою
         if (isdigit(str[i])) {
             // Зчитування числа
+            stop = 0;
             j = 0;
-            int found_dot = 0;
-            while (isdigit(str[i]) || (str[i] == '.' && isdigit(str[i+1])) ) {
+            while (isdigit(str[i]) || (str[i] == '.' && isdigit(str[i+1]) && !stop) ) {
                 num_temp[j] = str[i];
+                if(num_temp[j] == '.') stop = 1;
                 j++;
                 i++;
             }
@@ -55,6 +62,9 @@ float find_min(const char* str) {
                 min = num;
             }
         }
+    }
+    if(stop){
+        min = -1;
     }
     return min;
 }
