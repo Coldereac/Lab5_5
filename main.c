@@ -50,9 +50,9 @@ float find_min(const char* str) {
             // Зчитування числа
             stop = 0;
             j = 0;
-            while (isdigit(str[i]) || (str[i] == '.' && isdigit(str[i+1]) && !stop) ) {
+            while (isdigit(str[i]) || (str[i] == '.' && isdigit(str[i+1]) && stop != 1) ) {
                 num_temp[j] = str[i];
-                if(num_temp[j] == '.') stop = 1;
+                if(num_temp[j] == '.') stop ++;
                 j++;
                 i++;
             }
