@@ -1,0 +1,3 @@
+/home/malinka/CLionProjects/Lab5_5/cmake-build-debug/CMakeFiles/Lab5_5.dir
+/home/malinka/CLionProjects/Lab5_5/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/malinka/CLionProjects/Lab5_5/cmake-build-debug/CMakeFiles/rebuild_cache.dir
